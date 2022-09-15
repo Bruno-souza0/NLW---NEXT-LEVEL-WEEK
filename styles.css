@@ -1,0 +1,162 @@
+*{
+    /*remove todos os estilos automaticos do navegador*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;/* mesmo que adicione um padding na caixa o comando permite que ela tenha somente o tamanho da largura estipulado, evitando a soma dos dois (width+padding)*/
+}
+ul{
+    list-style: none;/* remove os estilos da lista*/
+}
+body{
+    background-image: url(./imagens/bg.jpg);
+    background-position: top center; /* Recurso utilizado para alinhar a imagem no topo da pagina e ao centro*/
+    background-size: 100% auto;/*Aumenta o tamanho da imagem de fundo em 100% da largura e a altura automatica*/
+    background-repeat: no-repeat;/*Não repetir a img*/
+    background-color: #121214;    
+}
+
+body *{
+    font-family: 'Inter', sans-serif;
+    line-height: 160%;
+}
+
+header{
+    padding-top: 32px;
+   height: calc(120px + 32px);
+   /*Função calc() para fazer com que o css calcule as propriedades e devina o valor estipulado*/
+}
+
+header div{
+    width: 120px;
+    margin: auto;
+    background-image: linear-gradient(90deg, #9572FC 0%, #43E7AD 50.52%, #E2D45C 100%);
+    border-radius: 50%;
+
+    
+    display: flex;
+    padding: 4px;/*o preenchimento da caixa é de 4px para manter a borda completa na imagem*/
+
+    transition: transform .3s;
+    /*comando verifica se a div recebeu o transform caso sim é aplicada uma transição de 3s em cima da imagem quando o mouse é passado por cima, quando retirado ela volta pasa a posição 1.1 do transform. */
+}
+
+header div:hover{
+    transform: scale(1.1);/* Quando o mouse passa por cima da imagem ela é ampliada significativamente*/
+}
+
+header img{
+    width: 100%;
+    border-radius: 50%;    
+}
+
+main{
+    max-width: 580px;
+    width: 90%;
+    margin: 32px auto;/*primeiro define a margem na altura e o auto para manter a largura ajustavel de acordo com a dimensão da pagina.*/
+
+    display: grid;
+    gap: 24px;
+}
+section{
+    color: white;    
+    background-image: linear-gradient(90deg, #9572FC 0%, #43E7AD 50.52%, #E2D45C 100%);
+    padding-top: 4px;
+    border-radius: 10px;
+}
+
+section div{
+    /*definindo a cor e as margens da caixa div*/
+    background-color: #2A2634;
+    padding: 32px;
+    padding-top: 24px;
+    border-radius: 8px;
+
+}
+
+section h2{
+    letter-spacing: -0.47px;/*define o espaçaemento entre as letras*/
+}
+section p{
+    letter-spacing: -0.18px;
+    color: #A1A1AA;
+}
+
+section ul{
+    /* DYSPLAY esta relacionado a visualização das caixas no html*/
+    display:flex;
+    flex-wrap: wrap;/*Faz com que chegar no limite da pagina ele joga as informações para baixo*/
+    gap: 16px;/* essa propriedade so funciona quando o display é definido como flex.*/
+
+    margin-top: 24px; /* Espaçamento entre uma linha e outra.*/
+}
+
+section ul li{
+    transition: transform .3s;
+}
+
+section ul li:hover{
+    transform: scale(1.1);
+}
+.games-list img{
+    width: 90px;
+    border-radius: 8px;
+}
+
+.channel-list img{
+    border-radius: 50%;
+    width: 70px;
+    border: 1px solid #443E54;
+}
+
+/*ANIMATION*/
+
+header div{
+    animation: fromTop .3s 1s backwards;
+    /*backwards é como se ele puxasse todas as animações para dentro do header div */
+}
+
+@keyframes fromTop{
+    /*partir da onde *from* e termina aonde *to*
+    animação utilizada para fazer com que a imagem do header apareça de cia para baixo*/
+    from{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    /*opacidade: deixa ele começar escuro sem aparecer nada e vai para onde começa a ver completamente a imagem*/
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+main section{
+    animation: fromBottom .7s backwards;
+}
+/*Para fazer com que as animações aconteça caixa por caixa
+main pega o section do filho n 1*, significa o comando abaixo.*/
+
+main section:nth-child(1){
+    animation-delay: 0;
+}
+
+main section:nth-child(2){
+    animation-delay: .4s;
+}
+
+main section:nth-child(3){
+    animation-delay: .8s;
+}
+
+@keyframes fromBottom{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+    /*Animação usada para fazer as UL aparecerem de baixo para cima*/
+}
